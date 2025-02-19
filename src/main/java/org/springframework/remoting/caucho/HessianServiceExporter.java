@@ -17,6 +17,7 @@
 package org.springframework.remoting.caucho;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -58,8 +59,7 @@ public class HessianServiceExporter extends HessianExporter implements HttpReque
             throws ServletException, IOException {
 
         if (!"POST".equals(request.getMethod())) {
-            throw new HttpRequestMethodNotSupportedException(request.getMethod(), new String[] { "POST" },
-                    "HessianServiceExporter only supports POST requests");
+            throw new HttpRequestMethodNotSupportedException(request.getMethod(), Arrays.asList( "POST" ) );
         }
 
         response.setContentType(CONTENT_TYPE_HESSIAN);
